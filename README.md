@@ -8,8 +8,9 @@
 
 # 引数:   
 - DFILE: J3のデータファイル(ex. J-OFURO3_LHF_V1.0_MONTHLY_HR_2002.nc)  
-- VVV  : 変数名 (ex. LHF)  
-- TYID : 台風ID（ex. 1013）  
+- VVV   : 変数名 (ex. LHF)  
+- TYID  : 台風ID（ex. 1013）  
+- LEVEL : カラーバーのレベル設定 (ex. "(0,250,25)") * オプション  
   
 # 出力:   
   台風を中心とする値の分布  
