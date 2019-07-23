@@ -11,6 +11,13 @@ if nargv == 4:
   dfile=sys.argv[1]
   var=sys.argv[2]
   tyid=sys.argv[3]
+  if (var == "LHF"):
+   lev="(0,400,40)"
+elif nargv == 5:
+  dfile=sys.argv[1]
+  var=sys.argv[2]
+  tyid=sys.argv[3]
+  lev=sys.argv[4] 
 else:
   print("input error")
 
@@ -42,7 +49,7 @@ for date in df['date_time_ferret']:
  print (n,date,df.iloc[n]['longitude'],df.iloc[n]['latitude'])
  longitude = df.iloc[n]['longitude']
  latitude = df.iloc[n]['latitude']
- task='./make_jnl.csh ' + dfile + ' ' + var + ' ' + str(n).zfill(3) + ' ' + date + ' ' + str(longitude) + ' ' + str(latitude)
+ task='./make_jnl.csh ' + dfile + ' ' + var + ' ' + str(n).zfill(3) + ' ' + date + ' ' + str(longitude) + ' ' + str(latitude) + ' "' + lev + '" ' + tyid
  print(task)
  res=subprocess.getoutput(task)
  print(res)
@@ -51,8 +58,4 @@ for date in df['date_time_ferret']:
  print(res)
  n += 1
  
-
-
-
-
 

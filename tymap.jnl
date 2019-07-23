@@ -69,5 +69,5 @@ define axis/t="01-jan-2010 00:00:00":"31-dec-2010 23:00:00":1/unit=hour hourly
 ! message
  go land
 ! message
- frame/file=`of`
+ frame/file="`of`"
  
