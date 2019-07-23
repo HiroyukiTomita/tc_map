@@ -1,0 +1,73 @@
+! tymap.jnl bo ty.jnl 
+!
+!           $1   $2   $3  $4   $5   $6    $7
+! go tympap DATE TIME LON LAT  VVV [level ofile]
+!
+! This is a ferret go tool to make map of VVV
+!
+!      DATE: Date in format 01-jan-2010
+!      LON : Longitude of center of TC
+!      LAT : Latitude of center of TC
+!      VVV : Target variable
+!     level: Level for shade/lev=() (ex. (0,30,1)
+!     ofile: file name for output (default is "ty")
+!
+! OUTPUT
+!     image file: VVV + ofile + .gif (or png)
+!
+! MEMO and NOTE:
+!   xx: value of the minimu pressure time
+!       if several minimu pressure time were detected,
+!       the later time is selected.
+!   xx_b: latitude before one day
+!   xx_a: latitude after one day
+!
+! CHANGES:
+!   add level arg
+!----------------------------------------------------------------------- 
+! Initial parameter
+LET date="$1"
+LET time="$2"
+LET clon=$3
+LET clat=$4
+LET var=$5
+LET vartitle="`var, return=title`"
+set var/title="`vartitle`@TY" var
+LET dx=20
+LET dy=20
+LET level="$6%(0,35,1)%"
+LET ofile="$7%ty%"
+
+LET color="black"
+LET scale=1.0
+
+! Output file
+ let of="`ofile`.gif"
+
+! Region
+ let xmin=clon-dx
+ let xmax=clon+dx
+ let ymin=clat-dy
+ let ymax=clat+dy
+ set reg/x=`xmin`:`xmax`/y=`ymin`:`ymax`
+
+! Date
+ list date
+ set reg/t="`date` `time`"
+! message "date"
+
+! Define  hourly grid
+define axis/t="01-jan-2010 00:00:00":"31-dec-2010 23:00:00":1/unit=hour hourly
+
+!PLOT
+ set win/asp=1
+! message "plot"
+ shade/lev=`level` var[GT=hourly@LIN]
+ go polymark poly/over/line/nolab/color=`color`/thick=2 `clon` `clat` " " circle `scale`
+
+ 
+! message
+ go land
+! message
+ frame/file=`of`
+ 
