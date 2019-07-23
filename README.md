@@ -20,3 +20,7 @@
 	make_jnl.csh: ferret実行用スクリプト作成  
 	tymap.jnl: 台風時の分布図作成のferretスクリプト  
 
+# 外部プロジェクト
+https://github.com/HiroyukiTomita/Best_Track  
+https://ferret.pmel.noaa.gov/Ferret/  
+
