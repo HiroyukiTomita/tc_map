@@ -18,5 +18,5 @@
   
 # 内部コード:   
 	make_jnl.csh: ferret実行用スクリプト作成  
-        tymap.jnl: 台風時の分布図作成のferretスクリプト  
+	tymap.jnl: 台風時の分布図作成のferretスクリプト  
 
